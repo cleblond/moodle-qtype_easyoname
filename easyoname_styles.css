@@ -1,0 +1,25 @@
+.que.easyoname .answer {
+    padding: 0.3em;
+    width: auto;
+    display: inline;
+}
+.que.easyoname .answer input {
+    width: 65%;
+}
+.que.easyoname.applet {
+	width:520px;
+}
+.que.easyoname.author {
+		float: right;
+		font-style: italic ;
+		font-size: 10px;
+}
+#page-question-type-easyoname .mform .textareamonospace {
+    white-space: pre;
+    font-family: Andale Mono, Monaco, Courier New, DejaVu Sans Mono, monospace;
+}
+
+
+.que.easyoname span.answerlabel {
+    vertical-align: top;
+}

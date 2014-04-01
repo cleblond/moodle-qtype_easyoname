@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?><customization active="default">
+  <scheme id="default">
+    <modify path="toolbar/atoms" row="0"/>
+    <modify path="toolbar/tools" row="1" index="0"/>
+    <add path="toolbar/tools">
+      <item id="electronGroup"/>
+      <item id="insertElectronFlow2"/>
+      <item id="insertElectronFlow"/>
+      <item id="radicalGroup"/>
+      <item id="lonePairGroup"/>
+    </add>
+    <order path="toolbar/tools" itemorder="bondGroup/electronGroup/insertElectronFlow2/insertElectronFlow/radicalGroup/lonePairGroup/chainGroup/boldMode/hashedMode/insertText/reactionGroup/createSGroup/bracesGroup/graphicsGroup/increaseCharge/decreaseCharge"/>
+    <modify path="toolbar/templates" row="0"/>
+    <modify path="toolbar/chemical" row="0"/>
+    <modify path="toolbar/markush" row="0"/>
+    <modify path="toolbar/mytemplates" row="0"/>
+    <modify path="toolbar/general" row="0"/>
+    <modify path="toolbar/edit3D" row="0"/>
+  </scheme>
+  <scheme id="config2" largeIcons="true">
+    <modify path="toolbar/config2_3" row="1"/>
+    <modify path="toolbar/config2_1" row="0"/>
+    <modify path="toolbar/config2_2" row="0"/>
+    <modify path="toolbar/mytemplates" row="0"/>
+  </scheme>
+</customization>
