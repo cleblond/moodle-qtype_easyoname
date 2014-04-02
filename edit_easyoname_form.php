@@ -104,7 +104,7 @@ class qtype_easyoname_edit_form extends qtype_shortanswer_edit_form {
 //      "\n" . get_string('javaneeded', 'qtype_easyoname', '<a href="http://www.java.com">Java.com</a>') .
 //	  "\n</applet>";
 
-
+/*
 	    $easyonamebuildstring = "\n<script LANGUAGE=\"JavaScript1.1\" SRC=\"../../marvin/marvin.js\"></script>".
 
 "<script LANGUAGE=\"JavaScript1.1\">
@@ -122,7 +122,7 @@ msketch_param(\"background\", \"#ffffff\");
 msketch_param(\"molbg\", \"#ffffff\");
 msketch_end();
 </script> ";
-
+*/
 //msketch_param(\"valenceCheckEnabled\", \"false\");
 
 
@@ -130,7 +130,7 @@ msketch_end();
 
 
         //output the marvin applet
-        $mform->addElement('html', html_writer::start_tag('div', array('style'=>'width:650px;')));
+        $mform->addElement('html', html_writer::start_tag('div', array('style'=>'width:650px;', 'id' => 'appletdiv')));
 		$mform->addElement('html', html_writer::start_tag('div', array('style'=>'float: right;font-style: italic ;')));
 		$mform->addElement('html', html_writer::start_tag('small'));
 		$easyonamehomeurl = 'http://www.chemaxon.com';
@@ -139,7 +139,7 @@ msketch_end();
 //		$mform->addElement('html', html_writer::tag('span', get_string('author', 'qtype_easyoname'), array('class'=>'easyonameauthor')));
 		$mform->addElement('html', html_writer::end_tag('small'));
 		$mform->addElement('html', html_writer::end_tag('div'));
-		$mform->addElement('html',$easyonamebuildstring);
+	//	$mform->addElement('html',$easyonamebuildstring);
 		$mform->addElement('html', html_writer::end_tag('div'));
 
 
@@ -148,6 +148,23 @@ msketch_end();
 		$mform->addElement('html', html_writer::empty_tag('br'));
 
 		
+
+        // Add applet to page
+        $jsmodule = array(
+            'name'     => 'qtype_easyoselect',
+            'fullpath' => '/question/type/easyoselect/easyoselect_script.js',
+            'requires' => array(),
+            'strings' => array(
+                array('enablejava', 'qtype_easyoselect')
+            )
+        );
+
+        $PAGE->requires->js_init_call('M.qtype_easyoselect.insert_applet',
+                                      array(),
+                                      true,
+                                      $jsmodule);
+
+
 
        ///add structure to applet
 	$jsmodule = array(
@@ -165,28 +182,22 @@ msketch_end();
                                       true,
                                       $jsmodule);
 
-
-
-
-
         $this->add_per_answer_fields($mform, get_string('answerno', 'qtype_easyoname', '{no}'),
                 question_bank::fraction_options());
 
         $this->add_interactive_settings();
+        $PAGE->requires->js_init_call('M.qtype_easyoname.init_getanswerstring', array($CFG->version));
     }
-	
-	protected function get_per_answer_fields($mform, $label, $gradeoptions,
+
+
+    protected function get_per_answer_fields($mform, $label, $gradeoptions,
             &$repeatedoptions, &$answersoption) {
 		
         $repeated = parent::get_per_answer_fields($mform, $label, $gradeoptions,
                 $repeatedoptions, $answersoption);
-		
-		//construct the insert button
-//crl mrv		$scriptattrs = 'onClick = "getSmilesEdit(this.name, \'cxsmiles:u\')"';
-		$scriptattrs = 'onClick = "getSmilesEdit(this.name, \'cxsmiles:u\')"';
+                $scriptattrs = 'class = id_insert';
 
-
-        $insert_button = $mform->createElement('button','insert',get_string('insertfromeditor', 'qtype_easyoname'),$scriptattrs);
+        $insert_button = $mform->createElement('button','insert',get_string('insertfromeditor', 'qtype_easyoname'), $scriptattrs);
         array_splice($repeated, 2, 0, array($insert_button));
 
         return $repeated;
