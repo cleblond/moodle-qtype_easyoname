@@ -15,23 +15,14 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * easyoname question type version information.
- *
- * @package    qtype
- * @subpackage easyoname
- * @copyright  1999 onwards Martin Dougiamas {@link http://moodle.com}
+ * @package    moodlecore
+ * @subpackage backup-moodle2
+ * @copyright  2014 onwards Carl LeBlond
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
+defined('MOODLE_INTERNAL') || die;
 
-defined('MOODLE_INTERNAL') || die();
-
-$plugin->version   = 2014040900;
-$plugin->requires  = 2011102700;
-$plugin->cron      = 0;
-$plugin->component = 'qtype_easyoname';
-$plugin->maturity  = MATURITY_STABLE;
-$plugin->release   = '1.0';
-
-$plugin->dependencies = array(
-    'qtype_shortanswer' => 2011102700
-);
+if ($ADMIN->fulltree) {
+    $settings->add(new admin_setting_configtext('qtype_easyoname_options/path', get_string('easyoname_options', 'qtype_easyoname'),
+                   get_string('configeasyonameoptions', 'qtype_easyoname'), '/marvin', PARAM_TEXT));
+}

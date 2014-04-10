@@ -1,8 +1,6 @@
-  Moodle 2.3 plugin: EasyOChem Marvinsketch Mechanism (EasyOMech) question type
+  Moodle 2.3+ plugin: Marvinsketch Name to Structure (EasyOName) question type
 
-  Based on Moodle integration script written by Dan Stowell
-
-  Modifications for Marvinsketch and Reactio arrows by Carl LeBlond
+   By Carl LeBlond
 
 
 INSTALLATION:
@@ -18,14 +16,10 @@ Once you have done that, visit your Moodle admin page - the database
 tables should automatically be upgraded to include an extra table for
 the EasyOChem Mechanism question type.
 
-You must download a recent copy of Marvinsketch from www.chemaxon.com (free for academic use) and intall it in folder named "marvin" at your web root.  Alternatively you could edit the php scripts if your marvin installation is elsewhere.  This version of easyomech was developed using Marvinsketch 5.10.3_b102  
-
+You must download a recent copy of Marvinsketch from www.chemaxon.com (free for academic use)
+and intall it in folder named "marvin" at your web root.  
 
 USAGE:
 
-The EasyOChem Mechanism question can be used to design single step reaction mechanism steps.  You 
-can ask questions such as "Please add curved arrows showing the flow of electrons for the following reaction?"  or Please add curved arrows showing how the following resonance structure could be obtained?.
-
-The student then draws the arrows for for the mechanism, and then press a button 
-to store the answer in a text box.
-
+The Name to structure question can be used to design questions in whch you require students
+to draw chemical structures or reactions schemes.

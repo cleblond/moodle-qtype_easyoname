@@ -9,7 +9,7 @@ M.qtype_easyoname={
 
 	},
 
-    insert_applet : function(){
+    insert_applet : function(Y, moodleurl, marvinpath){
 
 	var warningspan = document.getElementById('appletdiv');
         warningspan.innerHTML = '';
@@ -23,7 +23,7 @@ M.qtype_easyoname={
         newApplet.tabIndex = -1; // Not directly tabbable
         newApplet.mayScript = true;     
 	newApplet.id = 'MSketch';
-	newApplet.setAttribute('codebase','/marvin');
+	newApplet.setAttribute('codebase', marvinpath);
 
 	var param=document.createElement('param');
 	param.name='codebase_lookup';
@@ -37,7 +37,7 @@ M.qtype_easyoname={
 
 	var param=document.createElement('param');
 	param.name='menuconfig';
-        param.value='../eolms/question/type/easyoname/customization_mech_instructor.xml';
+        param.value = moodleurl + '/question/type/easyoname/customization_mech_instructor.xml';
 	newApplet.appendChild(param);
 
 	var param=document.createElement('param');

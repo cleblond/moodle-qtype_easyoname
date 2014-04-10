@@ -4,114 +4,38 @@
 
 M.qtype_easyoname={
     insert_easyoname_applet : function(Y, toreplaceid, appletid, name, topnode,
-                                                                    appleturl, feedback, readonly, appletoptions, implicithydrogen){
-        var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];   ///CRL changed smiles to mol
-//        var javaparams = new Array();
+                                                                    appleturl, feedback, readonly, implicithydrogen, moodleurl, marvinpath){
+        var javaparams = ['mol', Y.one(topnode+' input.mol').get('value')];   
         var easyonameoptions = new Array();
-
-
-	
-
-
-
-        if (appletoptions) {
-            easyonameoptions[easyonameoptions.length] = appletoptions;
-
-
-
-        }
         if (readonly) {
-//            easyonameoptions[easyonameoptions.length] = "false";  ///crl changed depict to true
-//	     javaparams.menubar = "false";	    
-//            easyonameoptions[easyonameoptions.length + 1] = "false";  ///crl changed depict to true
-//	    easyonameoptions[easyonameoptions.length] = Y.one(topnode+' input.mol').get('value');  ///crl changed depict to true
-	    easyonameoptions[easyonameoptions.length] = Y.one(topnode+' input.mol').get('value');  ///crl 
-
-
-
-
+	    easyonameoptions[easyonameoptions.length] = Y.one(topnode+' input.mol').get('value');
         }
         if (easyonameoptions.length !== 0) {
-//            javaparams[javaparams.length] = "viewonly";   ///crl changes options to viewonly
-//            javaparams[javaparams.length+1] = "menubar";   ///crl changes options to viewonly 
-  	    javaparams[javaparams.length] = "cxsmiles";  ///added by crl
-
+  	    javaparams[javaparams.length] = "cxsmiles";
             javaparams[javaparams.length] = easyonameoptions.join(',');
         }
         if (!this.show_java(toreplaceid, appletid, name, appleturl,
-                                                            600, 500, 'chemaxon.marvin.applet.JMSketchLaunch', javaparams, implicithydrogen)) {
-
-
+                                                            600, 500, 'chemaxon.marvin.applet.JMSketchLaunch', javaparams, implicithydrogen, moodleurl, marvinpath)) {
 
             this.show_error(Y, topnode);
 
-
         } else {
-//		window.alert('Message goes here');
-//		           var s = 'CC';
-//		var s = document.getElementById('stripped_answer').value;
-//		document.Msketch.setMol(s);
-//worked		document.MSketch.setMol(s, 'mrv');
-//		this.find_java_applet(name).setMol(s, 'smiles');
-
 		var inputdiv = Y.one(topnode);
             	inputdiv.ancestor('form').on('submit', function (){
-//		var s = this.find_java_applet(name).getMol("mol");
-/*
-//    var s = document.MSketch.getMol(format);
-                Y.one(topnode+' input.answer').set('value', this.find_java_applet(name).smiles()); */
                 Y.one(topnode+' input.answer').set('value', this.find_java_applet(name).getMol("cxsmiles:u"));
-
-//		 Y.one(topnode+' input.answer').set('value', this.find_java_applet(name).getMol("smiles"));
-                 
-//		var s = this.find_java_applet(name).getMol("mol");
-//		s = local2unix(s);
-
 		var strvalue = "" + encodeURIComponent(this.find_java_applet(name).getMol("cxsmiles:u"));
 		var v = navigator.appVersion;
 		if(v.indexOf("Win") > 0) {
 			strvalue = strvalue.split("\r\n").join("\n"); // To avoid "\r\r\n"
-		//return strvalue.split("\n").join("\r\n");
+		
 		} else { // Unix
-		//	return strvalue;
 		}
-
-
 
                  Y.one(topnode+' input.mol').set('value', strvalue);
 
-
-//		var s = this.find_java_applet(name).getMol("mol");
-//		s = unix2local(s); // Convert "\n" to local line separator
-//                Y.one(topnode+' input.easyoname').set('value', s);
-//                Y.one(topnode+' input.mol').set('value', s)
             }, this);
         }
     },
-
-
-
-/*
-local2unix : function (s) {
-    var strvalue = "" + s;
-    var v = navigator.appVersion;
-    if(v.indexOf("Win") > 0) {
-        return strvalue.split("\r").join("");
-    } else if(v.indexOf("Mac") > 0) { // Macintosh
-        return strvalue.split("\r").join("\n");
-    } else { // Unix
-        return strvalue;
-    }
-}
-*/
-
-
-
-
-
-
-
-
 
     show_error : function (Y, topnode) {
         var errormessage = '<span class ="javawarning">'
@@ -135,8 +59,8 @@ local2unix : function (s) {
     javainstalled : -99,
     doneie6focus : 0,
     doneie6focusapplets : 0,
- // Note: This method is also called from mod/audiorecorder
-    show_java : function (id, appletid, name, java, width, height, appletclass, javavars, implicithydrogen) {
+ // Note: This method is also called from mod/audiorecorder.
+    show_java : function (id, appletid, name, java, width, height, appletclass, javavars, implicithydrogen, moodleurl, marvinpath) {
         if (this.javainstalled == -99 ) {
             this.javainstalled = PluginDetect.isMinVersion(
                 'Java', 1.5, 'plugindetect.getjavainfo.jar', [0, 2, 0]) == 1;
@@ -147,116 +71,85 @@ local2unix : function (s) {
             return false;
         }
         var newApplet = document.createElement("applet");
-        newApplet.code=appletclass;
-        newApplet.archive=java;
-        newApplet.name=name;
-        newApplet.width=width;
-        newApplet.height=height;
+        newApplet.code = appletclass;
+        newApplet.archive = java;
+        newApplet.name = name;
+        newApplet.width = width;
+        newApplet.height = height;
         newApplet.tabIndex = -1; // Not directly tabbable
         newApplet.mayScript = true;     
 	newApplet.id = appletid;
-	newApplet.setAttribute('codebase','/marvin');
-//	newApplet.setAttribute('NAME','MSketch');
-//	newApplet.setAttribute('menubar','false');
-//	newApplet.setAttribute('menuconfig','../eolms/question/type/easyoname/customization_mech.xml');
-//	newApplet.setAttribute('bondDraggedAlong','false');
-//	newApplet.setAttribute('codebase_lookup','false');
-//	newApplet.setAttribute('defaultTool','electronFlow2');
-//	newApplet.setAttribute('implicitH','hetero');
-//	newApplet.setAttribute('sketchCarbonVisibility','on');
-        // In case applet supports the focushack system, we
+	newApplet.setAttribute('codebase', marvinpath);
 
-
-var param=document.createElement('param');
-	param.name='menubar';
-        param.value='false';
+var param = document.createElement('param');
+	param.name = 'menubar';
+        param.value = 'false';
 	newApplet.appendChild(param);
 
-var param=document.createElement('param');
-	param.name='menuconfig';
-        param.value='../eolms/question/type/easyoname/customization_mech.xml';
+var param = document.createElement('param');
+	param.name = 'menuconfig';
+        param.value = moodleurl + '/question/type/easyoname/customization_mech.xml';
 	newApplet.appendChild(param);
 
-var param=document.createElement('param');
+var param = document.createElement('param');
 	param.setAttribute('bondDraggedAlong','false');
 	newApplet.appendChild(param);
 
-var param=document.createElement('param');
-	param.name='codebase_lookup';
-        param.value='false';
+var param = document.createElement('param');
+	param.name = 'codebase_lookup';
+        param.value = 'false';
 	newApplet.appendChild(param);
 
-
-
-var param=document.createElement('param');
-	param.name='lonePairsAutoCalc';
-        param.value='false';
+var param = document.createElement('param');
+	param.name = 'lonePairsAutoCalc';
+        param.value = 'false';
 	newApplet.appendChild(param);
 
-var param=document.createElement('param');
-	param.name='lonePairsVisible';
-        param.value='true';
+var param = document.createElement('param');
+	param.name = 'lonePairsVisible';
+        param.value = 'true';
 	newApplet.appendChild(param);
 
 //alert(implicithydrogen);
-var param=document.createElement('param');
-	param.name='implicitH';
-        param.value=implicithydrogen;
+var param = document.createElement('param');
+	param.name = 'implicitH';
+        param.value = implicithydrogen;
 	newApplet.appendChild(param);
-
-
-
-
-
-
 
 if (implicithydrogen == 'off') {
-var param=document.createElement('param');
-	param.name='valenceCheckEnabled';
-        param.value='false';
+var param = document.createElement('param');
+	param.name = 'valenceCheckEnabled';
+        param.value = 'false';
 	newApplet.appendChild(param);
 
-var param=document.createElement('param');
-	param.name='importConv';
-        param.value='+H';
+var param = document.createElement('param');
+	param.name = 'importConv';
+        param.value = '+H';
 	newApplet.appendChild(param);
-
-
 }
 
-var param=document.createElement('param');
-	param.name='valencePropertyVisible';
-        param.value='false';
+var param = document.createElement('param');
+	param.name = 'valencePropertyVisible';
+        param.value = 'false';
 	newApplet.appendChild(param);
-
-
-
-        // pass in its id as a parameter.
         javavars[javavars.length] = 'focushackid';
         javavars[javavars.length] = newApplet.id;
-        for (var i=0;i<javavars.length;i+=2) {
-            var param=document.createElement('param');
-            param.name=javavars[i];
-            param.value=javavars[i+1];
+        for (var i = 0;i<javavars.length;i+=2) {
+            var param = document.createElement('param');
+            param.name = javavars[i];
+            param.value = javavars[i+1];
             newApplet.appendChild(param);
         }
-/*            param.name='viewonly';
-            param.value='false';
-	    param.name='menubar';
-            param.value='false';
-*/
 
-	param.name='codebase_lookup';
-        param.value='false';
+	param.name = 'codebase_lookup';
+        param.value = 'false';
 	newApplet.appendChild(param);
-
-
 
         warningspan.appendChild(newApplet);
 
         if(document.body.className.indexOf('ie6')!=-1 && !this.doneie6focus) {
             var fixFocus = function() {
-                if(document.activeElement && document.activeElement.nodeName.toLowerCase()=='applet') {
+                if(document.activeElement && document.activeElement.nodeName.toLowerCase() == 'applet') {
                     setTimeout(fixFocus, 100);
                     this.doneie6focus = 1;
                     this.doneie6focusapplets ++;
@@ -274,7 +167,7 @@ var param=document.createElement('param');
             };
             window.arghApplets = 0;
             setTimeout(fixFocus, 100);
-            this.doneie6focus=1;
+            this.doneie6focus = 1;
         }
         return true;
     }
