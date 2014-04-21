@@ -51,13 +51,13 @@ class qtype_easyoname_edit_form extends qtype_shortanswer_edit_form {
                 get_string('caseautofeedback', 'qtype_easyoname'), $menu);
 
         $menu = array(
-           get_string('implicitHhetero', 'qtype_easyoname') => get_string('implicitHhetero', 'qtype_easyoname'),
-           get_string('implicitHoff', 'qtype_easyoname') => get_string('implicitHoff', 'qtype_easyoname'),
-           get_string('implicitHall', 'qtype_easyoname') => get_string('implicitHall', 'qtype_easyoname'),
-           get_string('implicitHheteroterm', 'qtype_easyoname') => get_string('implicitHheteroterm', 'qtype_easyoname')
+           get_string('implicithhetero', 'qtype_easyoname') => get_string('implicithhetero', 'qtype_easyoname'),
+           get_string('implicithoff', 'qtype_easyoname') => get_string('implicithoff', 'qtype_easyoname'),
+           get_string('implicithall', 'qtype_easyoname') => get_string('implicithall', 'qtype_easyoname'),
+           get_string('implicithheteroterm', 'qtype_easyoname') => get_string('implicithheteroterm', 'qtype_easyoname')
         );
         $mform->addElement('select', 'implicithydrogen',
-                get_string('implicitH', 'qtype_easyoname'), $menu);
+                get_string('implicith', 'qtype_easyoname'), $menu);
 
         $mform->addElement('html', html_writer::start_tag('div', array('style' => 'width:650px;', 'id' => 'appletdiv')));
         $mform->addElement('html', html_writer::start_tag('div', array('style' => 'float: right;font-style: italic ;')));

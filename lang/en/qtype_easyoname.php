@@ -28,11 +28,11 @@
 $string['caseautofeedback'] = '<b>Enable automatic feedback?</b> Enabling this will provide automatic feedback based on the response given.';
 $string['autofeedbackenabled'] = 'Enabled';
 $string['autofeedbackdisabled'] = 'Disabled';
-$string['implicitH'] = '<b>Implicit H</b>';
-$string['implicitHhetero'] = 'hetero';
-$string['implicitHoff'] = 'off';
-$string['implicitHall'] = 'all';
-$string['implicitHheteroterm'] = 'heteroterm';
+$string['implicith'] = '<b>Implicit H</b>';
+$string['implicithhetero'] = 'hetero';
+$string['implicithoff'] = 'off';
+$string['implicithall'] = 'all';
+$string['implicithheteroterm'] = 'heteroterm';
 $string['casenotrandom'] = 'Define Structure';
 $string['caserandom'] = 'Generate Random Structure';
 $string['caseuserandom'] = 'Would you like to define the structure or generate a random structure each time?';
