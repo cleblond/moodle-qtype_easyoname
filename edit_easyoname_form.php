@@ -71,7 +71,7 @@ class qtype_easyoname_edit_form extends qtype_shortanswer_edit_form {
         $mform->addElement('html', html_writer::empty_tag('br'));
 
         $marvinconfig = get_config('qtype_easyoname_options');
-	$marvinpath = $marvinconfig->path;
+        $marvinpath = $marvinconfig->path;
 
         // Add applet to page.
         $jsmodule = array(

@@ -121,7 +121,7 @@ class qtype_easyoname_renderer extends qtype_renderer {
         global $PAGE, $CFG;
 
         $marvinconfig = get_config('qtype_easyoname_options');
-	$marvinpath = $marvinconfig->path;
+        $marvinpath = $marvinconfig->path;
 
         $jsmodule = array(
             'name'     => 'qtype_easyoname',
