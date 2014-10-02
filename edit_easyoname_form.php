@@ -78,37 +78,7 @@ class qtype_easyoname_edit_form extends qtype_shortanswer_edit_form {
         $PAGE->requires->js_init_call('M.qtype_easyoname.insert_structure_into_applet',
                                       array(),
                                       true);
-/*
-        // Add applet to page.
-        $jsmodule = array(
-            'name'     => 'qtype_easyoname',
-            'fullpath' => '/question/type/easyoname/easyoname_script.js',
-            'requires' => array(),
-            'strings' => array(
-                array('enablejava', 'qtype_easyoname')
-            )
-        );
-*/
-/*
-        $PAGE->requires->js_init_call('M.qtype_easyoname.insert_applet',
-                                      array($CFG->wwwroot, $marvinpath),
-                                      true,
-                                      $jsmodule);
-        // Add structure to applet.
-        $jsmodule = array(
-            'name'     => 'qtype_easyoname',
-            'fullpath' => '/question/type/easyoname/easyoname_script.js',
-            'requires' => array(),
-            'strings' => array(
-                array('enablejava', 'qtype_easyoname')
-            )
-        );
 
-        $PAGE->requires->js_init_call('M.qtype_easyoname.insert_structure_into_applet',
-                                      array(),
-                                      true,
-                                      $jsmodule);
-*/
         $this->add_per_answer_fields($mform, get_string('answerno', 'qtype_easyoname', '{no}'),
                 question_bank::fraction_options());
 
