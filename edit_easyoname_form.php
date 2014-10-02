@@ -33,7 +33,7 @@ class qtype_easyoname_edit_form extends qtype_shortanswer_edit_form {
     protected function definition_inner($mform) {
         global $PAGE, $CFG;
 
-        $PAGE->requires->js('/question/type/easyoname/easyoname_script.js');
+        //$PAGE->requires->js('/question/type/easyoname/easyoname_script.js');
         $PAGE->requires->css('/question/type/easyoname/easyoname_styles.css');
 
         $mform->addElement('hidden', 'usecase', 1);
@@ -73,6 +73,12 @@ class qtype_easyoname_edit_form extends qtype_shortanswer_edit_form {
         $marvinconfig = get_config('qtype_easyoname_options');
         $marvinpath = $marvinconfig->path;
 
+        $PAGE->requires->js_init_call('M.qtype_easyoname.insert_applet', array($CFG->wwwroot, $marvinpath));
+
+        $PAGE->requires->js_init_call('M.qtype_easyoname.insert_structure_into_applet',
+                                      array(),
+                                      true);
+/*
         // Add applet to page.
         $jsmodule = array(
             'name'     => 'qtype_easyoname',
@@ -82,7 +88,8 @@ class qtype_easyoname_edit_form extends qtype_shortanswer_edit_form {
                 array('enablejava', 'qtype_easyoname')
             )
         );
-
+*/
+/*
         $PAGE->requires->js_init_call('M.qtype_easyoname.insert_applet',
                                       array($CFG->wwwroot, $marvinpath),
                                       true,
@@ -101,7 +108,7 @@ class qtype_easyoname_edit_form extends qtype_shortanswer_edit_form {
                                       array(),
                                       true,
                                       $jsmodule);
-
+*/
         $this->add_per_answer_fields($mform, get_string('answerno', 'qtype_easyoname', '{no}'),
                 question_bank::fraction_options());
 
